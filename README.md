@@ -48,7 +48,7 @@ Industries face volatile demand due to market shifts, disruptions, or seasonalit
 
 *(Add a flowchart of your methodology here)*  
 ![Methodology Flowchart](assets/methodology.png)  
-*Figure: Workflow of sensitivity analysis under demand uncertainty.*  
+*Figure: Workflow of sensitivity analysis under demand uncertainty*  
 
 ---
 
