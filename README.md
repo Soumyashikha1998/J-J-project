@@ -17,12 +17,20 @@ Strategic expansion decisions (e.g., manufacturing capacity, supply chain networ
 ---
 
 ### **Why This Matters**
-Industries face volatile demand due to market shifts, disruptions, and seasonality. Many still rely on traditional tools like Excel or expert judgment, leading to uncoordinated and biased decision-making. **Traditional MILP models** assume fixed demand**, resulting in:
+Industries face volatile demand due to market shifts, disruptions, and seasonality. Many still rely on traditional tools like Excel or expert judgment, leading to uncoordinated and biased decision-making. **Traditional MILP models** assume fixed demand, resulting in:
 - **Overinvestment** in low-probability scenarios.
 - **Underpreparedness** for high-demand shocks.
 - **Suboptimal resource allocation** due to rigid expansion strategies.
 
-Expansion decisions in industries such as manufacturing, supply chain, and infrastructure planning require careful assessment of future demand variations. A real-world example is the **supply of surgical instruments**, where ensuring that the right equipment reaches surgeons at the right time requires capacity investment planning today to meet future needs some years ahead due to long lead times. However, the challenge is that the future is uncertain:
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Problem_network.png?raw=true" 
+       alt="Methodology Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Represtation of Supply Chain Network</em>
+</div> 
+
+Expansion decisions in **industries such as manufacturing, supply chain, and infrastructure planning** require careful assessment of future demand variations. A real-world example is the **supply of surgical instruments**, where ensuring that the right equipment reaches surgeons at the right time requires capacity investment planning today to meet future needs some years ahead due to long lead times. However, the challenge is that the future is uncertain:
 - **New product introductions (NPIs) may cannibalize existing products** at unpredictable rates.
 - **Market prices fluctuate**, impacting profitability.
 - **Demand patterns shift** due to technological advancements, regulatory changes, and competitive actions.
@@ -31,6 +39,14 @@ By integrating **sensitivity analysis** into the MILP framework, we aim to:
 - **Identify critical parameters** affecting expansion feasibility.
 - **Quantify the impact of demand fluctuations** on decision-making.
 - **Provide insights for robust strategic planning** that adapts to uncertainty.
+
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Challenge.png?raw=true" 
+       alt="Methodology Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Uncertainty challenge</em>
+</div>  
 
 ### **Research Questions**
 - How sensitive are **MILP-driven expansion decisions** to demand uncertainty?
@@ -54,6 +70,7 @@ _(Include a figure here, e.g., a schematic of demand uncertainty vs. expansion c
   <br>
   <em>Figure: Workflow of sensitivity analysis under demand uncertainty</em>
 </div> 
+
 ### **1. Demand Scenario Generation**
 We generate multiple demand forecasts using **Monte Carlo simulation**. The simulation considers:
 - **User inputs**: Nominal demand data, a set of instructions
