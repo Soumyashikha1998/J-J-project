@@ -47,7 +47,8 @@ Industries face volatile demand due to market shifts, disruptions, or seasonalit
 - **Tornado plots**: Rank parameters by influence on outputs.  
 
 *(Add a flowchart of your methodology here)*  
-![Methodology Flowchart](https://via.placeholder.com/600x300?text=MILP+Sensitivity+Analysis+Workflow)  
+![Methodology Flowchart](assets/methodology.png)  
+*Figure: Workflow of sensitivity analysis under demand uncertainty.*  
 
 ---
 
