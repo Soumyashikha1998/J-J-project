@@ -21,7 +21,12 @@ Strategic expansion decisions (e.g., manufacturing capacity, supply chain networ
 Industries face volatile demand due to market shifts, disruptions, or seasonality. Traditional MILP models assume fixed demand, leading to:  
 - **Overinvestment** in low-probability scenarios.  
 - **Underpreparedness** for high-demand shocks.  
-- **Suboptimal resource allocation**.  
+- **Suboptimal resource allocation**.
+
+Expansion decisions in industries such as manufacturing, supply chain, and infrastructure planning require careful assessment of future demand variations. By integrating sensitivity analysis into the MILP framework, we aim to:
+- Identify critical parameters affecting expansion feasibility.
+- Quantify the impact of demand fluctuations on decision-making.
+- Provide insights for robust strategic planning.
 
 ### **Research Questions**  
 1. How sensitive are MILP-driven expansion decisions to demand uncertainty?  
@@ -33,19 +38,7 @@ Industries face volatile demand due to market shifts, disruptions, or seasonalit
 
 ---
 
-## 📈 **Methodology**  
-### **1. Model Formulation**  
-- MILP objective: Minimize total cost (CAPEX + OPEX) subject to capacity constraints.  
-- Decision variables: Binary (e.g., build/don’t build) + continuous (e.g., production levels).  
-
-### **2. Demand Uncertainty Modeling**  
-- **Scenario-based**: Discrete demand scenarios (low/medium/high).  
-- **Probabilistic**: Stochastic programming with sampled distributions.  
-
-### **3. Sensitivity Analysis**  
-- **Parameter sweeps**: Vary demand bounds, observe cost/feasibility.  
-- **Tornado plots**: Rank parameters by influence on outputs.  
-
+## 📈 **Methodology** 
 
 <div align="center">
   <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Methodology.png?raw=true" 
@@ -54,6 +47,33 @@ Industries face volatile demand due to market shifts, disruptions, or seasonalit
   <br>
   <em>Figure: Workflow of sensitivity analysis under demand uncertainty</em>
 </div> 
+### **1. Demand Scenario Generation**
+We generate multiple demand forecasts using **Monte Carlo simulation**. The simulation considers:
+- **User inputs**: Nominal demand data, a set of instructions
+- **Real-world dynamics**: Market potential, adoption rates (for new products (NPIs) or cannibalizationeffects), product relationship, launch delays
+Scenario sampling is them performed based on cumulative probability functions to ensure comprehensive uncertainty coverage.
+Visual: [Scenario Sampling Image]
+
+### **2. MILP Model Formulation**  
+The next step involves formulating a **Mixed-Integer Linear Programming (MILP) model** with the objective of:
+- **Minimizing total costs**, including inventory holding and other expenses.
+- **Maximizing demand fulfillment** by ensuring optimal capacity allocation.
+
+The model's decision variables determine how many capacity units should be allocated to different work centers over multiple time periods. This results in a **multi-period supply management problem** subject to various constraints, including:
+- **Inventory balance** and demand propagation.
+- **Production capacity and expansion projects.**
+- **Flexible work centers** that can adapt to changing demand.
+- **Annual budget limitations** and investment feasibility.
+
+A single demand forecast can be optimized using this MILP model. 
+
+### **3. Sensitivity Analysis**  
+To assess how changes in demand parameters affect optimal decisions, we apply a **multi-parametric sensitivity analysis approach**. This method: 
+- Provides insights into the impact of demand variations 
+- Avoids the need to re-run multiple scenarios
+- Determines the sensitivity of decision variables to different demand scenarios, enabling faster and more robust strategic planning.
+
+_The algorithm representation is included in the repository._
 
 ---
 
