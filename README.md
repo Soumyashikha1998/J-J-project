@@ -92,74 +92,72 @@ The model's decision variables determine how many capacity units should be alloc
 A single demand forecast can be optimized using this MILP model. 
 
 
-The optimization model is formulated as a Mixed-Integer Linear Program (MILP) to determine optimal expansion decisions under demand uncertainty.
-
 #### Objective Function
-\[
+$$
 \max \sum_{t} \frac{1}{(1+r)^t} (\lambda_a \cdot SFG_t - \lambda_b \cdot CID_t - \lambda_c \cdot IIC_t - \lambda_d \cdot HC_t - \lambda_e \cdot TD_t) + \sum_{j} \sum_{t} (s_{j,t}^{E} + s_{j,t}^{U})
-\]
+$$
 
 #### Inventory Constraints
-\[
+$$
 s_{j,t} = s_{j,t-1} + x_{j,t} - d_{j,t} \quad \forall j \in J, t > 1
-\]
-\[
+$$
+$$
 s_{j,t} = Target_{j,t} + s_{j,t}^{E} - s_{j,t}^{S} \quad \forall j \in J, t \in T
-\]
-\[
+$$
+$$
 s_{j,t}^{S} \leq s_{j,t}^{BIN} \cdot (Target_{j,t} + 1) \quad \forall j \in J, t \in T
-\]
-\[
+$$
+$$
 s_{j,t}^{E} \leq (1 - s_{j,t}^{BIN}) \cdot 2 \cdot s_{j,t} \quad \forall j \in J, t \in T
-\]
-\[
+$$
+$$
 s_{j,t} \leq S_j^{max} \quad \forall j \in J, t \in T
-\]
+$$
 
 #### BOM Constraints
-\[
+$$
 d_{k,t-CLT_k} = \sum_{p \in P_{i}} \frac{\alpha_{k,j}}{(1 - SR_{k,j})} \cdot x_{j,t} \quad \forall k \in J_K, t \in T
-\]
+$$
 
 #### Demand Fulfillment
-\[
+$$
 d_{j,t-CLT_k} \leq D_{j,t} \quad \forall j \in J_p, t \in T
-\]
+$$
 
 #### Available Capacity Constraints
-\[
+$$
 z_{j,t} = z_{j,t-1} + \sum_{p \in P_i} \phi_p \cdot y_{j,t} + v_{j,t} \quad \forall i \in I, t > 1
-\]
+$$
 
 #### Cross Qualification Constraints
-\[
+$$
 \hat{x}_{i,j,t} \leq \sum_{\tau = t_0}^{t} v_{i,j,t} \quad \forall i, j \in Q, t : t \in T
-\]
-\[
+$$
+$$
 \sum_{t \in T} v_{i,j,t} \leq 1 \quad \forall i, j \in Q
-\]
-\[
+$$
+$$
 u_{i,j,t-CLT_k} = v_{i,j,t} \quad \forall i, j \in Q, t \in T
-\]
+$$
 
 #### Project Constraints
-\[
+$$
 \sum_{t \in T} y_{p,t} \leq 1 \quad \forall p \in P^I, t > 1
-\]
-\[
+$$
+$$
 \sum_{\tau \in T} y_{p,\tau} \leq \gamma_p - 1 \quad \forall p \in P^S, 1 < t \leq T
-\]
-\[
+$$
+$$
 y_{q,t} \leq \gamma_p - \sum_{\tau = 1}^{t-1} y_{p,\tau} \quad \forall (p,q) : p \in P^I, q \in P^S, t > 1
-\]
-\[
+$$
+$$
 y_{p,t-LT_p}^{S} \leq y_{p,t} \quad \forall p \in P, t \in T
-\]
+$$
 
 #### Annual Budget Constraint
-\[
+$$
 \sum_{p \in P} \frac{F_p}{N_{Period\_per\_year}} \cdot y_{p,t} + \sum_{j \in J} C_j \cdot \gamma_j \leq AB \quad \forall t \in T
-\]
+$$
 
 #### Notation
 - **SFG**: Sales of Finished Goods
@@ -168,7 +166,7 @@ y_{p,t-LT_p}^{S} \leq y_{p,t} \quad \forall p \in P, t \in T
 - **IIC**: Inventory Investment Cost
 - **QC**: Qualification Cost
 - **HC**: Holding Cost
-```
+
 
 ### **3. Sensitivity Analysis**  
 To assess how changes in demand parameters affect optimal decisions, we apply a **multi-parametric programming approach**. This method: 
