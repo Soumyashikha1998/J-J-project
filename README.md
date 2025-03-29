@@ -47,8 +47,13 @@ Industries face volatile demand due to market shifts, disruptions, or seasonalit
 - **Tornado plots**: Rank parameters by influence on outputs.  
 
 
-![Methodology Flowchart](https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Methodology.png?raw=true)  
-*Figure: Workflow of sensitivity analysis under demand uncertainty*  
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Methodology.png?raw=true" 
+       alt="Methodology Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Workflow of sensitivity analysis under demand uncertainty</em>
+</div> 
 
 ---
 
