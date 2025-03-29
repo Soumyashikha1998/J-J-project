@@ -74,22 +74,18 @@ model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
   ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
   ![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)
 
-
 ---
 
-### **🚀 Quick Start** *(Markdown Version)*
-```markdown
 ## 🚀 **Quick Start**
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/repository-name.git
    cd repository-name
-
+   ```
 
 ---
 
-### **🔍 Key Findings** *(Markdown Version)*
-```markdown
+
 ## 🔍 **Key Findings**
 - 📉 **Demand Sensitivity**:  
   Expansion plans become infeasible beyond **±20%** demand deviation from baseline.  
@@ -107,8 +103,7 @@ model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
 
 ---
 
-### **✨ Contributors** *(Markdown Version)*
-```markdown
+
 ## ✨ **Contributors**
 - **Soumya Shikha**  
   [![Email](https://img.shields.io/badge/Email-soumya@example.com-blue)](mailto:soumya@example.com)  
