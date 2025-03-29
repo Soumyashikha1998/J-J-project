@@ -46,8 +46,8 @@ Industries face volatile demand due to market shifts, disruptions, or seasonalit
 - **Parameter sweeps**: Vary demand bounds, observe cost/feasibility.  
 - **Tornado plots**: Rank parameters by influence on outputs.  
 
-*(Add a flowchart of your methodology here)*  
-![Methodology Flowchart](assets/methodology.png)  
+
+![Methodology Flowchart](https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/methodology.png?raw=true)  
 *Figure: Workflow of sensitivity analysis under demand uncertainty*  
 
 ---
