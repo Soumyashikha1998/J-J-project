@@ -59,7 +59,7 @@ model.x = Var(within=Binary)  # Expansion decision
 model.y = Var(within=NonNegativeReals)  # Production
 model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
 # ... (add your key constraints)
-
+```
 ## 🛠️ **Tools Used**
 - **Optimization**: 
   ![Pyomo](https://img.shields.io/badge/Pyomo-Open%20Source%20Optimization-orange)
