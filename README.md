@@ -81,7 +81,13 @@ We generate multiple demand forecasts using **Monte Carlo simulation**. The simu
 - **User inputs**: Nominal demand data, a set of instructions
 - **Real-world dynamics**: Market potential, adoption rates (for new products (NPIs) or cannibalizationeffects), product relationship, launch delays
 Scenario sampling is them performed based on cumulative probability functions to ensure comprehensive uncertainty coverage.
-Visual: [Scenario Sampling Image]
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Scenario_Sampling.png?raw=true" 
+       alt="Methodology Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Generation and Selection of demand scenarios</em>
+</div>
 
 ### **2. MILP Model Formulation**  
 The next step involves formulating a **Mixed-Integer Linear Programming (MILP) model** with the objective of:
