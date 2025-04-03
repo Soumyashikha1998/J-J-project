@@ -12,7 +12,7 @@ Strategic expansion decisions (e.g., manufacturing capacity, supply chain networ
 ✅ Simulates **multiple demand scenarios** using Monte Carlo methods to account for market fluctuations.  
 ✅ Performs **parametric sensitivity analysis** to provide adaptable investment recommendations without rerunning multiple optimizations.  
 ✅ Identifies critical demand thresholds where **investment strategies** shift significantly. 
-✅ Provides **visual tools** to interpret important aspects of capacity investment policies, production planning and inventory management through an interactive dashboard.
+✅ Provides **visual tools** to interpret important aspects of capacity investment policies, production planning and inventory management through an interactive dashboard.  
 
 By embedding uncertainty-aware optimization into capacity planning, our framework enhances decision robustness, ensuring cost-effective, scalable, and risk-mitigated expansion strategies.  
 *(Add a concise 2-3 sentence summary of your key findings here for conference attendees.)*  
@@ -22,9 +22,9 @@ By embedding uncertainty-aware optimization into capacity planning, our framewor
 ### **Why This Matters**
 Manufacturers and supply chains face volatile demand due to factors like market shifts, disruptions, and seasonality. Many still rely on traditional tools like Excel or expert judgment, leading to uncoordinated and biased decision-making, and face:
 
-❌ Overinvestment in low-probability scenarios.
-❌ Underpreparedness for high-demand shocks.
-❌ Suboptimal resource allocation due to rigid expansion strategies.
+❌ Overinvestment in low-probability scenarios.  
+❌ Underpreparedness for high-demand shocks.  
+❌ Suboptimal resource allocation due to rigid expansion strategies.  
 
 <div align="center">
   <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Problem_network.png?raw=true" 
@@ -36,9 +36,9 @@ Manufacturers and supply chains face volatile demand due to factors like market 
 
 A real-world example is the **supply of surgical instruments**.  The figure shown above represents a similar supply chain network. These require long lead-time investments, meaning capacity decisions today must align with uncertain future demand 2-3 years ahead, so that the right equipment reaches surgeons at the right time. However, challenges arise due to:
 
-📌 New Product Introductions (NPIs): Some instruments may replace existing ones, altering demand forecasts.
-📌 Market Price Fluctuations: Profitability and investment feasibility change with shifting costs.
-📌 Technological & Regulatory Changes: Compliance and innovation cycles impact long-term demand patterns.
+📌 New Product Introductions (NPIs): Some instruments may replace existing ones, altering demand forecasts.  
+📌 Market Price Fluctuations: Profitability and investment feasibility change with shifting costs.  
+📌 Technological & Regulatory Changes: Compliance and innovation cycles impact long-term demand patterns. 
 
 <div align="center">
   <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Challenge.png?raw=true" 
@@ -67,7 +67,7 @@ _(Include a figure here, e.g., a schematic of demand uncertainty vs. expansion c
 ---
 
 ## 📈 **Methodology** 
-
+To tackle the challenges, we propose a three step approach:  
 <div align="center">
   <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/Methodology.png?raw=true" 
        alt="Methodology Flowchart" 
