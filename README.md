@@ -9,9 +9,9 @@
 ## 🌟 **Overview**  
 Strategic expansion decisions (e.g., manufacturing capacity, supply chain networks) are often modeled as **Mixed-Integer Linear Programming (MILP)** problems. However, real-world demand uncertainty can significantly alter the feasibility and optimality of these plans. This project:  
 
-✅ Simulates **multiple demand scenarios** using Monte Carlo methods to account for market fluctuations.
-✅ Performs **parametric sensitivity analysis** to provide adaptable investment recommendations without rerunning multiple optimizations.
-✅ Identifies critical demand thresholds where **investment strategies** shift significantly.
+✅ Simulates **multiple demand scenarios** using Monte Carlo methods to account for market fluctuations.  
+✅ Performs **parametric sensitivity analysis** to provide adaptable investment recommendations without rerunning multiple optimizations.  
+✅ Identifies critical demand thresholds where **investment strategies** shift significantly. 
 ✅ Provides **visual tools** to interpret important aspects of capacity investment policies, production planning and inventory management through an interactive dashboard.
 
 By embedding uncertainty-aware optimization into capacity planning, our framework enhances decision robustness, ensuring cost-effective, scalable, and risk-mitigated expansion strategies.  
@@ -52,7 +52,7 @@ By integrating **sensitivity analysis** into the MILP framework, we aim to:
 - Identify critical parameters affecting expansion feasibility.
 - Quantify the impact of demand fluctuations on decision-making.
 - Provide insights for robust strategic planning that adapts to uncertainty.
-- 
+  
 ### **Research Questions**
 - How sensitive are **MILP-driven expansion decisions** to demand uncertainty?
 - Which **demand scenarios** lead to infeasibility or cost spikes?
