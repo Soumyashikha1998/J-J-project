@@ -1,0 +1,24 @@
+data = {}
+
+# Extract Variable Values
+for var_name, var_obj in instance.component_map(Var, active=True).items():
+    var_data = {}
+    for index in var_obj:
+        var_data[index] = value(var_obj[index])
+    data[var_name] = var_data
+
+# Extract Parameter Values
+for param_name, param_obj in instance.component_map(Param, active=True).items():
+    param_data = {}
+    for index in param_obj:
+        param_data[index] = value(param_obj[index])
+    data[param_name] = param_data
+
+# Create a Pandas DataFrame from the data
+df = pd.DataFrame.from_dict(data, orient="index")
+
+# Write DataFrame to Excel
+file_name = "variables_and_parameters.xlsx"
+with pd.ExcelWriter(file_name) as writer:
+    for sheet_name in df.index.unique():
+        df.loc[sheet_name].to_excel(writer, sheet_name=sheet_name)
