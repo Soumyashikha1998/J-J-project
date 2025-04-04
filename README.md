@@ -192,7 +192,31 @@ To assess how changes in demand parameters affect optimal decisions, we apply a 
   <br>
   <em>Figure: Step-by-step algorithm of multi-parametric programming for MILP </em>
 </div> 
+We can obtain the optimal expansion decisions from the MILP model foe each demand scenarios. To evaluate how sensitive these decisions are to variations in demand parameters, we apply a multi-parametric programming approach instead of solving multiple MILP optimizations for different demand realizations. This approach allows us to systematically explore the feasible solution space under different demand variations by identifying critical regions where the optimal decisions remain unchanged. This reduces computational complexity and provides decision-makers with direct insights into how investment strategies should adapt dynamically without re-solving the MILP for each scenario.
+To implement this, we follow an iterative parametric programming algorithm, as illustrated in the step-by-step schematic:
 
+Step 0 (Initialization):
+Define an initial critical region (CR) with an upper bound for the objective function. Identify an initial integer solution from the MILP model.
+Step 1 (Multiparametric LP Subproblem):
+Solve the multiparametric LP subproblem for each critical region to obtain parametric upper bounds. If a better feasible solution is found, update the best upper bound and the integer decision variables accordingly. If infeasibility arises, move to Step 2.
+Step 2 (Master MILP Subproblem):
+Solve the MILP master problem for each region while treating demand uncertainty as a bounded variable. Introduce integer and parametric cuts to refine feasible solutions. Return to Step 1 with newly identified integer solutions and updated critical regions.
+Step 3 (Convergence):
+The algorithm terminates when no feasible solution exists for further demand variations.
+The final solution consists of critical regions with corresponding expansion decisions and optimal capacity investment plans.
+
+There are several techniques for searching the parametric space and determining critical regions where optimal decisions shift:
+
+Geometrical Approach:
+Constructs polyhedral partitions of the parametric space by explicitly solving the optimization problem at different demand levels.
+Computationally expensive for high-dimensional problems.
+Graph-Based Approach:
+Models the solution space as a network where nodes represent feasible solutions, and edges depict transitions due to parametric changes.
+Primarily used in transportation network problems but less applicable to supply chains.
+Combinatorial Approach (Chosen Method):
+Identifies integer-feasible regions by systematically enumerating integer solutions and evaluating their validity under different demand variations.
+Well-suited for supply chain and manufacturing applications, where expansion decisions involve discrete investment choices.
+Efficient in handling large-scale problems with multiple constraints. By adopting the combinatorial approach, we ensure that our sensitivity analysis remains computationally tractable while providing structured decision rules for capacity expansion under demand uncertainty.
 ---
 
 ## 💻 **Technical Implementation**  
@@ -204,20 +228,20 @@ model.y = Var(within=NonNegativeReals)  # Production
 model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
 # ... (add your key constraints)
 ```
+---
 ## 🛠️ **Tools Used**
-- **Optimization**: 
-  ![Pyomo](https://img.shields.io/badge/Pyomo-Open%20Source%20Optimization-orange)
-  ![Gurobi](https://img.shields.io/badge/Gurobi-Solver%20(Optional)-yellow)
 - **Data Handling**: 
   ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-blue)
   ![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-green)
-- **Visualization**: 
+- **Optimization**: 
+  ![Pyomo](https://img.shields.io/badge/Pyomo-Open%20Source%20Optimization-orange)
+  ![Gurobi](https://img.shields.io/badge/Gurobi-Solver%20(Optional)-yellow)
+- **Visualization**:
+  ![Streamlit](https://img.shields.io/badge/Streamlit-Interactive Dashboard-green)
   ![Matplotlib](https://img.shields.io/badge/Matplotlib-Plotting-red)
   ![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Viz-purple)
 - **Development**: 
   ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-  ![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)
-
 ---
 
 ## 🚀 **Quick Start**
@@ -226,25 +250,40 @@ model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
    git clone https://github.com/your-username/repository-name.git
    cd repository-name
    ```
+2. **Download Required Files**:
+   Ensure you have the following files and folder in your working directory:
+   ```bash
+   parametric2.py
+   ```
+   ```bash
+   dashboard.py
+   ```
+   ```bash
+   datasets/
+   ``` (folder containing necessary data)
+3. **Run the Dashboard**:
+   Execute the following command to launch the interactive dashboard:
+   ```bash
+   streamli run dashboard.py
+   ```
+   This will start a local server, and you can view the dashboard in your browser.
 
 ---
 
 
 ## 🔍 **Key Findings**
-- 📉 **Demand Sensitivity**:  
-  Expansion plans become infeasible beyond **±20%** demand deviation from baseline.  
-  ![Demand Sensitivity Plot](https://via.placeholder.com/400x200?text=Demand+vs+Cost+Plot)  
-
-- 💡 **Robustness Insights**:  
-  A **15% capacity buffer** reduces cost volatility by **40%** under uncertainty.  
-
-- ⚖️ **Trade-off Analysis**:  
-  Phased investments outperform single-stage expansions when demand growth is >**10% CAGR**.  
-  ```python
-  # Example trade-off snippet (placeholder)
-  print(f"Optimal investment threshold: {threshold} units/year")
-
-
+1. Demand Scenario Analysis:
+Demand variations were analyzed in a 80-120% range for a test problem with one product, three work centers, and four time periods.
+The heatmap categorizes scenarios into Min (80%), Nominal (100%), and Max (120%).  
+2. Cost Variability Across Critical Regions (CRs):
+The objective function follows piecewise-linear MILP solutions, defining cost behavior across CRs. CRs represent distinct, non-overlapping clusters where the optimal investment strategy remains stable. Cost shifts at CR boundaries highlight resource reallocation points critical for investment decisions.  
+3. Capacity Investment Strategies:
+Five optimal investment plans exist forour problem, each aligning with different demand scenarios. Plan E is the most frequent (58%), while Plan A & D are least likely (3.7% each).  
+The heatmap visualizes each plan indicating work center investments over time.  
+4. Production Planning Insights:
+Stacked bar graphs show production levels across time periods and demand scenarios. Helps refine strategies to meet peak demands efficiently.  
+5. Scenario-Based Investment Optimization:
+Model suggests optimal plans based on demand trends across time periods. Take a tour of the dashboard, and try playing with scenarios. If demand is anticipated to be in the mid-lower range in the first two periods, and in mid-higher range lower in the third and fourth periods. The model suggests the best investment plans accordingly. This is where you can experiment with different scenarios and see which investment plans suit your case. For this example, the optimizer suggests going for Plan E mostly and maybe Plan B. Scenario experimentation allows businesses to adapt investment decisions dynamically.
 ---
 
 
