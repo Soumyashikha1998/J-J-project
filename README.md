@@ -298,7 +298,7 @@ Stacked bar graphs show production levels across time periods and demand scenari
 6. Scenario-Based Investment Optimization:
 Model suggests optimal plans based on demand trends across time periods. Take a tour of the dashboard, and try playing with scenarios. If demand is anticipated to be in the mid-lower range in the first two periods, and in mid-higher range lower in the third and fourth periods. The model suggests the best investment plans accordingly. This is where you can experiment with different scenarios and see which investment plans suit your case. For this example, the optimizer suggests going for Plan E mostly and maybe Plan B. Scenario experimentation allows businesses to adapt investment decisions dynamically.
 <div align="center">
-  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/investment_plans_bubbles.png?raw=true" 
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/investment_plans_bubble.png?raw=true" 
        alt="Algorithm Flowchart" 
        width="50%" />
   <br>
@@ -348,7 +348,7 @@ Model suggests optimal plans based on demand trends across time periods. Take a 
 ---
 
 ## ✨ **Contributors**
-- **Soumya Shikha**  (Lead Researcher)
+- **Soumya Shikha**  (Lead Researcher)  
   [![Email](https://img.shields.io/badge/Email-sshikha@alumni.cmu.edu-blue)](mailto:sshikha@alumni.cmu.edu)  
   [![GitHub](https://img.shields.io/badge/GitHub-Soumyashikha1998-green)](https://github.com/Soumyashikha1998)  
 
