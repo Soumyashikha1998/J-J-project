@@ -236,7 +236,7 @@ Ensure you have Python installed, then install the required packages using:
 pip install -r requirements.txt
 ```
 **How the Dashboard Works**
-1. The dashboard is built using Streamlit, Matplotlib, Dash and Plotly for visualization.
+1. The dashboard is built using Streamlit, Matplotlib, and Plotly for visualization.
 2. When dashboard.py is executed, it:
 Loads datasets from the datasets/ folder.
 Calls parametric2.py to perform computations.
@@ -341,7 +341,7 @@ Model suggests optimal plans based on demand trends across time periods. Take a 
 3. **Run the Dashboard**:
    Execute the following command to launch the interactive dashboard:
    ```bash
-   streamli run dashboard.py
+   streamlit run dashboard.py
    ```
    This will start a local server, and you can view the dashboard in your browser.
 
