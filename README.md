@@ -1,9 +1,6 @@
 # 📊 Sensitivity Analysis of MILP-Based Expansion Decisions Under Demand Uncertainty  
 *A Data-Driven Approach for Strategic Capacity Management Planning*  
 
-![Banner Image](https://via.placeholder.com/1200x400?text=Sensitivity+Analysis+of+MILP+Expansion+Decisions)  
-*(Replace with a relevant graphic, e.g., optimization flowchart or demand uncertainty visualization)*  
-
 ---
 
 ## 🌟 **Overview**  
@@ -15,7 +12,6 @@ Strategic expansion decisions (e.g., manufacturing capacity, supply chain networ
 ✅ Provides **visual tools** to interpret important aspects of capacity investment policies, production planning and inventory management through an interactive dashboard.  
 
 By embedding uncertainty-aware optimization into capacity planning, our framework enhances decision robustness, ensuring cost-effective, scalable, and risk-mitigated expansion strategies.  
-*(Add a concise 2-3 sentence summary of your key findings here for conference attendees.)*  
 
 ---
 
@@ -56,13 +52,7 @@ By integrating **sensitivity analysis** into the MILP framework, we aim to:
 ### **Research Questions**
 - How sensitive are **MILP-driven expansion decisions** to demand uncertainty?
 - Which **demand scenarios** lead to infeasibility or cost spikes?
-- Can we derive **robust decision rules** from sensitivity analysis to improve strategic planning?
-
-_(Include a figure here, e.g., a schematic of demand uncertainty vs. expansion costs)_
-
-
-*(Include a figure here, e.g., a schematic of demand uncertainty vs. expansion costs)*  
-![Problem Schematic](https://via.placeholder.com/600x300?text=Demand+Uncertainty+Impact+on+MILP)  
+- Can we derive **robust decision rules** from sensitivity analysis to improve strategic planning? 
 
 ---
 
@@ -105,7 +95,7 @@ A single demand forecast can be optimized using this MILP model.
 
 #### Objective Function
 $$
-\max \sum_{t} \frac{1}{(1+r)^t} (\lambda_a \cdot SFG_t - \lambda_b \cdot CID_t - \lambda_c \cdot IIC_t - \lambda_d \cdot HC_t - \lambda_e \cdot TD_t) + \sum_{j} \sum_{t} (s_{j,t}^{E} + s_{j,t}^{U})
+\min \sum_{t} \frac{1}{(1+r)^t} (\lambda_a \cdot SFG_t - \lambda_b \cdot CID_t - \lambda_c \cdot IIC_t - \lambda_d \cdot HC_t - \lambda_e \cdot TD_t) + \sum_{j} \sum_{t} (s_{j,t}^{E} + s_{j,t}^{U})
 $$
 
 #### Inventory Constraints
@@ -198,30 +188,30 @@ We can obtain the optimal expansion decisions from the MILP model foe each deman
 
 To implement this, we follow an iterative parametric programming algorithm, as illustrated in the step-by-step schematic:
 
-Step 0 (Initialization):
+<i> **Step 0 (Initialization)** </i>:
 Define an initial critical region (CR) with an upper bound for the objective function. Identify an initial integer solution from the MILP model.
 
-Step 1 (Multiparametric LP Subproblem):
+<i> **Step 1 (Multiparametric LP Subproblem)** </i>:
 Solve the multiparametric LP subproblem for each critical region to obtain parametric upper bounds. If a better feasible solution is found, update the best upper bound and the integer decision variables accordingly. If infeasibility arises, move to Step 2.
 
-Step 2 (Master MILP Subproblem):
+<i> **Step 2 (Master MILP Subproblem)** </i>:
 Solve the MILP master problem for each region while treating demand uncertainty as a bounded variable. Introduce integer and parametric cuts to refine feasible solutions. Return to Step 1 with newly identified integer solutions and updated critical regions.
 
-Step 3 (Convergence):
+<i> **Step 3 (Convergence)** </i>:
 The algorithm terminates when no feasible solution exists for further demand variations.
 The final solution consists of critical regions with corresponding expansion decisions and optimal capacity investment plans.
 
 There are several techniques for searching the parametric space and determining critical regions where optimal decisions shift:  
 
-Geometric Approach:    
+<i> Geometric Approach </i>:    
 Constructs polyhedral partitions of the parametric space by explicitly solving the optimization problem at different demand levels.  
 Computationally expensive for high-dimensional problems.
 
-Graph-based Approach:
+<i> Graph-based Approach </i>:
 Models the solution space as a network where represnt feasible solutions, and edges depict transitions due to parametric changes.
 Primarily used in transporattion network problems but less applicable to suplly chains.
 
-Combinatorial Approach (Chosen Approach):
+<i> **Combinatorial Approach (Chosen Approach)** </i>:
 Identifies integer-feasible regions by systematically enumerating integer solutions and evaluating their validity under different demand variations.  
 Well suited for supply chain and manufacturing applications, where expansion decisions involve discrete investment choices.  
 Efficient in handling large-scale problems with multiple constraints. By adopting the combinatorial approach, we ensure that our sensitivity analysis remains computationally tractable while providing structured decision rules for capacity expansion under demand uncertainty.
@@ -256,14 +246,64 @@ Generates interactive charts and tables for analysis.
    streamlit run dashboard.py
    ```
 **Core Functionalities**
-Data Processing: parametric2.py loads and processes the dataset.
-Optimization Model: Uses MILP techniques to evaluate different scenarios.
-Visualization: The dashboard displays results using dynamic graphs and tables.
-**Customization & Extensibility**
-Modify Input Data: Update the files in the datasets/ folder.
-Change Model Parameters: Edit parametric2.py to adjust computational logic.
+Data Processing: parametric2.py loads and processes the dataset.  
+Optimization Model: Uses MILP techniques to evaluate different scenarios.  
+Visualization: The dashboard displays results using dynamic graphs and tables.  
+**Customization & Extensibility**  
+Modify Input Data: Update the files in the datasets/ folder.  
+Change Model Parameters: Edit parametric2.py to adjust computational logic.  
 Run the Dashboard: View charts and visuals.
 
+---
+
+## 🔍 **Key Findings**
+1. Demand Scenario Analysis:
+Demand variations were analyzed in a 80-120% range for a test problem with one product, three work centers, and four time periods.
+The heatmap categorizes scenarios into Min (80%), Nominal (100%), and Max (120%).
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/demand_scenarios_heatmap.png?raw=true" 
+       alt="Algorithm Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure:  Demand Scenarios: Temporal Patterns & Hotspots </em>
+</div>
+3. Cost Variability Across Critical Regions (CRs):
+The objective function follows piecewise-linear MILP solutions, defining cost behavior across CRs. CRs represent distinct, non-overlapping clusters where the optimal investment strategy remains stable. Cost shifts at CR boundaries highlight resource reallocation points critical for investment decisions.  
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/critical_region_plot.png?raw=true" 
+       alt="Algorithm Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Cost Function Variability across Critical Regions</em>
+</div>
+4. Capacity Investment Strategies:
+Five optimal investment plans exist forour problem, each aligning with different demand scenarios. Plan E is the most probable (58%), while Plan A & D are least likely (3.7% each).  
+The heatmap visualizes each plan indicating work center investments over time.  
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/investment_plans.png?raw=true" 
+       alt="Algorithm Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Capacity Investment Definitions and Selections </em>
+</div>
+5. Production Planning Insights:
+Stacked bar graphs show production levels across time periods and demand scenarios. Helps refine strategies to meet peak demands efficiently.  
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/stacked_production.png?raw=true" 
+       alt="Algorithm Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Production Levels for Demand Variability </em>
+</div>
+6. Scenario-Based Investment Optimization:
+Model suggests optimal plans based on demand trends across time periods. Take a tour of the dashboard, and try playing with scenarios. If demand is anticipated to be in the mid-lower range in the first two periods, and in mid-higher range lower in the third and fourth periods. The model suggests the best investment plans accordingly. This is where you can experiment with different scenarios and see which investment plans suit your case. For this example, the optimizer suggests going for Plan E mostly and maybe Plan B. Scenario experimentation allows businesses to adapt investment decisions dynamically.
+<div align="center">
+  <img src="https://github.com/Soumyashikha1998/Johnson-Johnson/blob/main/assets/investment_plns_bubbles.png?raw=true" 
+       alt="Algorithm Flowchart" 
+       width="50%" />
+  <br>
+  <em>Figure: Investment Planner</em>
+</div>
 ---
 
 ## 🛠️ **Tools Used**
@@ -296,8 +336,8 @@ Run the Dashboard: View charts and visuals.
    dashboard.py
    ```
    ```bash
-   datasets/
-   ``` (folder containing necessary data)
+   datasets/ #(folder containing necessary data)
+   ``` 
 3. **Run the Dashboard**:
    Execute the following command to launch the interactive dashboard:
    ```bash
@@ -306,23 +346,6 @@ Run the Dashboard: View charts and visuals.
    This will start a local server, and you can view the dashboard in your browser.
 
 ---
-
-
-## 🔍 **Key Findings**
-1. Demand Scenario Analysis:
-Demand variations were analyzed in a 80-120% range for a test problem with one product, three work centers, and four time periods.
-The heatmap categorizes scenarios into Min (80%), Nominal (100%), and Max (120%).  
-2. Cost Variability Across Critical Regions (CRs):
-The objective function follows piecewise-linear MILP solutions, defining cost behavior across CRs. CRs represent distinct, non-overlapping clusters where the optimal investment strategy remains stable. Cost shifts at CR boundaries highlight resource reallocation points critical for investment decisions.  
-3. Capacity Investment Strategies:
-Five optimal investment plans exist forour problem, each aligning with different demand scenarios. Plan E is the most frequent (58%), while Plan A & D are least likely (3.7% each).  
-The heatmap visualizes each plan indicating work center investments over time.  
-4. Production Planning Insights:
-Stacked bar graphs show production levels across time periods and demand scenarios. Helps refine strategies to meet peak demands efficiently.  
-5. Scenario-Based Investment Optimization:
-Model suggests optimal plans based on demand trends across time periods. Take a tour of the dashboard, and try playing with scenarios. If demand is anticipated to be in the mid-lower range in the first two periods, and in mid-higher range lower in the third and fourth periods. The model suggests the best investment plans accordingly. This is where you can experiment with different scenarios and see which investment plans suit your case. For this example, the optimizer suggests going for Plan E mostly and maybe Plan B. Scenario experimentation allows businesses to adapt investment decisions dynamically.
----
-
 
 ## ✨ **Contributors**
 - **Soumya Shikha**  
