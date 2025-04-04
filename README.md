@@ -324,7 +324,7 @@ Model suggests optimal plans based on demand trends across time periods. Take a 
 ## 🚀 **Quick Start**
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/repository-name.git
+   git clone https://github.com/Soumyashikha1998/J-J-project.git
    cd repository-name
    ```
 2. **Download Required Files**:
