@@ -142,13 +142,15 @@ $$
 
 #### Cross Qualification Constraints
 $$
-\hat{x}_{i,j,t} \leq \sum_{\tau = t_0}^{t} v_{i,j,t} \quad \forall i, j \in Q, t : t \in T
+\hat{x}_{i,j,t} \leq \sum_{\tau = t_0}^{t} v_{i,j,\tau} \quad \forall \; i, j \in Q,\; t \in T
 $$
+
 $$
-\sum_{t \in T} v_{i,j,t} \leq 1 \quad \forall i, j \in Q
+\sum_{t \in T} v_{i,j,t} \leq 1 \quad \forall \; i, j \in Q
 $$
+
 $$
-u_{i,j,t-CLT_k} = v_{i,j,t} \quad \forall i, j \in Q, t \in T
+u_{i,j,t - \text{CLT}_k} = v_{i,j,t} \quad \forall \; i, j \in Q,\; t \in T
 $$
 
 #### Project Constraints
@@ -192,43 +194,78 @@ To assess how changes in demand parameters affect optimal decisions, we apply a 
   <br>
   <em>Figure: Step-by-step algorithm of multi-parametric programming for MILP </em>
 </div> 
-We can obtain the optimal expansion decisions from the MILP model foe each demand scenarios. To evaluate how sensitive these decisions are to variations in demand parameters, we apply a multi-parametric programming approach instead of solving multiple MILP optimizations for different demand realizations. This approach allows us to systematically explore the feasible solution space under different demand variations by identifying critical regions where the optimal decisions remain unchanged. This reduces computational complexity and provides decision-makers with direct insights into how investment strategies should adapt dynamically without re-solving the MILP for each scenario.
+We can obtain the optimal expansion decisions from the MILP model foe each demand scenarios. To evaluate how sensitive these decisions are to variations in demand parameters, we apply a multi-parametric programming approach instead of solving multiple MILP optimizations for different demand realizations. This approach allows us to systematically explore the feasible solution space under different demand variations by identifying critical regions where the optimal decisions remain unchanged. This reduces computational complexity and provides decision-makers with direct insights into how investment strategies should adapt dynamically without re-solving the MILP for each scenario.  
+
 To implement this, we follow an iterative parametric programming algorithm, as illustrated in the step-by-step schematic:
 
 Step 0 (Initialization):
 Define an initial critical region (CR) with an upper bound for the objective function. Identify an initial integer solution from the MILP model.
+
 Step 1 (Multiparametric LP Subproblem):
 Solve the multiparametric LP subproblem for each critical region to obtain parametric upper bounds. If a better feasible solution is found, update the best upper bound and the integer decision variables accordingly. If infeasibility arises, move to Step 2.
+
 Step 2 (Master MILP Subproblem):
 Solve the MILP master problem for each region while treating demand uncertainty as a bounded variable. Introduce integer and parametric cuts to refine feasible solutions. Return to Step 1 with newly identified integer solutions and updated critical regions.
+
 Step 3 (Convergence):
 The algorithm terminates when no feasible solution exists for further demand variations.
 The final solution consists of critical regions with corresponding expansion decisions and optimal capacity investment plans.
 
-There are several techniques for searching the parametric space and determining critical regions where optimal decisions shift:
+There are several techniques for searching the parametric space and determining critical regions where optimal decisions shift:  
 
-Geometrical Approach:
-Constructs polyhedral partitions of the parametric space by explicitly solving the optimization problem at different demand levels.
+Geometric Approach:    
+Constructs polyhedral partitions of the parametric space by explicitly solving the optimization problem at different demand levels.  
 Computationally expensive for high-dimensional problems.
-Graph-Based Approach:
-Models the solution space as a network where nodes represent feasible solutions, and edges depict transitions due to parametric changes.
-Primarily used in transportation network problems but less applicable to supply chains.
-Combinatorial Approach (Chosen Method):
-Identifies integer-feasible regions by systematically enumerating integer solutions and evaluating their validity under different demand variations.
-Well-suited for supply chain and manufacturing applications, where expansion decisions involve discrete investment choices.
+
+Graph-based Approach:
+Models the solution space as a network where represnt feasible solutions, and edges depict transitions due to parametric changes.
+Primarily used in transporattion network problems but less applicable to suplly chains.
+
+Combinatorial Approach (Chosen Approach):
+Identifies integer-feasible regions by systematically enumerating integer solutions and evaluating their validity under different demand variations.  
+Well suited for supply chain and manufacturing applications, where expansion decisions involve discrete investment choices.  
 Efficient in handling large-scale problems with multiple constraints. By adopting the combinatorial approach, we ensure that our sensitivity analysis remains computationally tractable while providing structured decision rules for capacity expansion under demand uncertainty.
+
 ---
 
 ## 💻 **Technical Implementation**  
-```python
-# Pyomo snippet example (simplified)
-model = ConcreteModel()
-model.x = Var(within=Binary)  # Expansion decision
-model.y = Var(within=NonNegativeReals)  # Production
-model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
-# ... (add your key constraints)
+**Project Strucutre**
+```bash
+repository-name/
+├── dashboard.py         # Main script to launch the dashboard
+├── parametric2.py       # Computational model for the parametric programming implementation 
+├── MILP model           # Folder containing the original MILP model codes for the supply chain network
+├── datasets/            # Folder containing input data files
+├── requirements.txt     # List of dependencies
+└──  README.md           # Documentation
 ```
+
+**Installation & Dependencies**
+Ensure you have Python installed, then install the required packages using:
+```bash
+pip install -r requirements.txt
+```
+**How the Dashboard Works**
+1. The dashboard is built using Streamlit, Matplotlib, Dash and Plotly for visualization.
+2. When dashboard.py is executed, it:
+Loads datasets from the datasets/ folder.
+Calls parametric2.py to perform computations.
+Generates interactive charts and tables for analysis.
+3. To run the dashboard:
+   ```bash
+   streamlit run dashboard.py
+   ```
+**Core Functionalities**
+Data Processing: parametric2.py loads and processes the dataset.
+Optimization Model: Uses MILP techniques to evaluate different scenarios.
+Visualization: The dashboard displays results using dynamic graphs and tables.
+**Customization & Extensibility**
+Modify Input Data: Update the files in the datasets/ folder.
+Change Model Parameters: Edit parametric2.py to adjust computational logic.
+Run the Dashboard: View charts and visuals.
+
 ---
+
 ## 🛠️ **Tools Used**
 - **Data Handling**: 
   ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-blue)
@@ -237,7 +274,7 @@ model.cost = Objective(expr=CAPEX*model.x + OPEX*model.y, sense=minimize)
   ![Pyomo](https://img.shields.io/badge/Pyomo-Open%20Source%20Optimization-orange)
   ![Gurobi](https://img.shields.io/badge/Gurobi-Solver%20(Optional)-yellow)
 - **Visualization**:
-  ![Streamlit](https://img.shields.io/badge/Streamlit-Interactive Dashboard-green)
+  ![Streamlit](https://img.shields.io/badge/Streamlit-Interactive%20Dashboard-green)
   ![Matplotlib](https://img.shields.io/badge/Matplotlib-Plotting-red)
   ![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Viz-purple)
 - **Development**: 
